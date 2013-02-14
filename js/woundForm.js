@@ -1,4 +1,4 @@
-app.value('woundForm', {
+app.value('formSchema', {
   'id': 'woundForm',
   'label': 'Wound Formular',
   'dataType': 'container',
