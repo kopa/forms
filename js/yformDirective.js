@@ -6,7 +6,7 @@ app.directive('yform', function yFormDirectiveFactory(/*injectables: */ formSche
     transclude: true,
     restrict: 'E',
     scope: true,
-  compile: function compile(tElement, tAttrs, transclude  /* = linker function */ ) {
+    compile: function compile(tElement, tAttrs, transclude  /* = linker function */ ) {
       console.log(transclude);
       tElement.html('<div class="form" id="{{formData.id}}"><fieldset id="{{formData.children[0].id}}"></fieldset></div>');
       // 1. Übersetze die JSON-Struktur aus woundForm.js in ein Angular Template
