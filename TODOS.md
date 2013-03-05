@@ -1,10 +1,9 @@
 # Todos
 
-* Definieren eines Beispielformulars (inkl. Formulardaten)
-* Auf Basis des Metamodel das Beispielformular zu einem JSON-Objekt konvertieren
+* Binding zwischen Formularobjekt und Formulardaten herstellen
 * JSON-Objekt nach HTML rendern
 
+
+# Done
+* Definieren eines Beispielformulars (inkl. Formulardaten)
 * Definieren von Beispielformulardaten
-* Entfernen der Formulardaten aus dem Formularobjekt
-* Binding zwischen Formularobjekt und Formulardaten herstellen
-* 
