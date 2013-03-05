@@ -1,4 +1,4 @@
-app.value('formData', { 
+app.value('woundFormData', { 
     'id':'woundForm',
     'children': [
         { 

@@ -1,25 +1,32 @@
-
-app.directive('yform', function yFormDirectiveFactory(/*injectables: */ formSchema, formData) {
-  var directiveDefinitionObject = {
-    priority: 0,
+app.directive('yform', function () {
+  return {
+    template: '<div></div>',
     replace: true,
     transclude: true,
     restrict: 'E',
-    scope: true,
+    scope: {formData: '=formData', formSchema: '=formSchema'},
+    controller: function ($scope, $element, $transclude, $compile) {
+      var child = angular.element('<div widget-type-' + $scope.formSchema.widgetType + '></div>');
+      $element.append(child);
+      $compile(child, $scope);
+      // $transclude(function (clone) {
+      //   clone.attr('widget-type-' + $scope.formSchema.widgetType, '');
+      // })
+    },
     compile: function compile(tElement, tAttrs, transclude  /* = linker function */ ) {
-      console.log(transclude);
-      tElement.html('<div class="form" id="{{formData.id}}"><fieldset id="{{formData.children[0].id}}"></fieldset></div>');
-      // 1. Übersetze die JSON-Struktur aus woundForm.js in ein Angular Template
-      //    Jedes Unter-Formular-Element soll den passenden Scope kriegen!
+      console.log('compile');
+      // console.log(transclude);
+      // transclude({}, function (clone) {
+      //    console.log('transclude');
+      //    clone.attr('widget-type-' + $scope.formSchema.widgetType, '');
+      // });
       return {
         pre: function preLink(scope, iElement, iAttrs, controller) { 
-          // 2. Schreibe woundFormData in den scope
-          scope.formData = formData;
+          console.log('pre');
+          //iElement.append('<div widget-type-' + scope.formSchema.widgetType + '></div>');
         },
         post: function postLink(scope, iElement, iAttrs, controller) { }
       }
-    },
-    link: function postLink(scope, iElement, iAttrs) { }
+    }
   };
-  return directiveDefinitionObject;
 });
