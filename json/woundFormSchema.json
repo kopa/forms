@@ -1,0 +1,65 @@
+{
+  "id": "woundForm",
+  "label": "Wound Formular",
+  "dataType": "container",
+  "widgetType": "form",
+  "children": [
+    {
+      "id": "personalData",
+      "label": "personal data",
+      "dataType": "container",
+      "widgetType": "fieldset",
+      "children": [
+        {
+          "id": "name",
+          "label": "name",
+          "dataType": "text",
+          "widgetType": "textField"
+        },
+        {
+          "id": "birthdate",
+          "label": "birthdate",
+          "dataType": "date",
+          "widgetType": "dateField"
+        },
+        {
+          "id": "gender",
+          "label": "gender",
+          "dataType": "text",
+          "widgetType": "selectOne",
+          "options": [
+            {
+              "value": "m",
+              "description": "male"
+            },
+            {
+              "value": "w",
+              "description": "female"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medicalData",
+      "label": "medical data",
+      "dataType": "container",
+      "widgetType": "fieldset",
+      "children": [
+        {
+          "id": "bloodPressure",
+          "label": "blood pressure",
+          "dataType": "number",
+          "widgetType": "textField"
+        },
+        {
+          "id": "comment",
+          "label": "comment",
+          "dataType": "text",
+          "widgetType": "textArea"
+        }
+
+      ]
+    }
+  ]
+}

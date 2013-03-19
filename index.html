@@ -10,16 +10,16 @@
 
 
 </head>
-    <body ng-controller="main">
+    <body ng-controller="FormCtrl">
 
-        <div yform form-schema="woundFormSchema" form-data="woundFormData"></div>
+        <div id="yform"></div>
 
+        <!-- Vendors -->
         <script src="js/vendor/jquery-1.9.1.js"></script>
         <script src="js/vendor/angular.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/woundFormSchema.js"></script>
-        <script src="js/woundFormData.js"></script>
-        <script src="js/yformDirective.js"></script>
-        <script src="js/widgetTypeFormDirective.js"></script>
+
+        <!-- App specific -->
+        <script src="js/controllers.js"></script>
+        <script src="js/directives.js"></script>
     </body>
 </html>
