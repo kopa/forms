@@ -1,54 +1,90 @@
 app.directive('yform', function ($compile) {
   return {
+    restrict: 'C',
+    // transclude: 'element', //mabe this could help
+    // scope: true, //set new one
+    replace: true, 
+    compile: function compile(tElement, tAttrs, transclude) {
+      return {
+        post: function postLink($scope, iElement, iAttrs) {     
+          var parentMarkup, childMarkup, parent;
+
+          // check if $scope.formSchmea is not undefined
+          if (!$scope.formSchema){
+            console.error("formSchema is undefined!");
+            return false;
+          } else if (! $scope.formData){
+            console.error("formData is undefined!");
+            return false;
+          }  else {
+            console.log()
+          }
+
+          // prepare markups
+          // class="widget-type-{{formSchema.widgetType}}"  //does not work
+          parentMarkup = '<div widget-type-'+$scope.formSchema.widgetType+' id="{{formSchema.id}}"></div>';
+          childMarkup = '<div class="yform" ng-repeat="formSchema in formSchema.children" test="{{formSchema.id}}"></div>';
+
+          // compile parent markup
+          parent = $compile(angular.element(parentMarkup))($scope);          
+
+          // compile child markup and add it into the parent
+          parent.html($compile(angular.element(childMarkup))($scope));
+
+          // append the compiled parent code into the current yform element
+          iElement.append(parent);
+          // iElement.replaceWith(parent); //sorry, does not work
+        }
+      };
+    }
+  }
+});
+
+
+app.directive('widgetTypeForm', function () {
+  return {
+    template: '<form></form>',
     replace: true,
-    transclude: true,
-    link: function($scope, iElement, iAttrs) {     
-      var parentMarkup, childMarkup, parent, children;
-
-      // check if $scope.formSchmea is not undefined
-      if (!$scope.formSchema){
-        console.error("formSchema is undefined!");
-        return false;
-      } else if (! $scope.formData){
-        console.error("formData is undefined!");
-        return false;
-      } else {
-        console.log('linking: ', $scope, iElement, iAttrs);
-      }
-
-      // render current widget:
-      parentMarkup =  '<div widget-type-' + $scope.formSchema.widgetType + '></div>';
-      widget = angular.element(parentMarkup);
-      parent = iElement.append($compile(widget)($scope));
-      
-      // render child widgets
-      childMarkup = '<div yform ng-repeat="formSchema in formSchema.children">'; //form-schema="formSchema" form-data="formData[formSchema.id]"
-      childMarkup += '</div>';
-      children = angular.element(childMarkup);
-
-      parent.append($compile(children)($scope));
+    restrict: 'A',
+    link: function postLink($scope, element, iAttrs, controller) { 
+      // $scope.formData = $scope.formData[0];
+      // console.log($scope.formData);
     }
   };
 });
 
+app.directive('widgetTypeFieldset', function () {
+  return {
+    template: '<fieldset></fieldset>', 
+    replace: true,
+    restrict: 'A',
+    link: function postLink($scope, element, iAttrs, controller) { 
+      // $scope.formData = $scope.formData[0];
+      console.log($scope.formData);
+    }
+  };
+});
 
-// app.directive('widgetTypeForm', function () {
-//   return {
-//     // template: '<div class="test"></div><form ng-repeat="child in children"><yform>test</yform></form>',
-//     // replace: true,
-//     // transclude: true,
-//     restrict: 'A',
-//     compile: function compile(tElement, tAttrs, transclude  /* = linker function */ ) {
-//       console.log('compile formDirective');
-//       return {
-//         pre: function preLink($scope, iElement, iAttrs, controller) { 
-//           console.log('pre formDirective');
-//           // scope.formData = formData;
-//           // scope.formSchema = formSchema;
-//           // iElement.attr("widget-type-" + formSchema.widgetType, "");
-//         },
-//         post: function postLink($scope, iElement, iAttrs, controller) { }
-//       }
-//     }
-//   };
-// });
+app.directive('widgetTypeTextfield', function () {
+  return {
+    template: '<input type="text"/>', 
+    replace: true,
+    restrict: 'A'
+  };
+});
+
+app.directive('widgetTypeDatefield', function () {
+  return {
+    template: '<input type="date"/>', 
+    replace: true,
+    restrict: 'A'
+  };
+});
+
+app.directive('widgetTypeTextarea', function () {
+  return {
+    template: '<textarea></textarea>', 
+    replace: true,
+    restrict: 'A'
+  };
+});

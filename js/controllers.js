@@ -25,7 +25,7 @@ app.controller ('FormCtrl',  function FormCtrl ($scope, $http, $compile) {
 	function checkDataAvailability () {
 		if($scope.formData && $scope.formSchema ){
 			var formElement = $('#yform');
-			formElement.attr('yform','true');
+			formElement.addClass('yform');
 			$compile(formElement)($scope);
 		}
 
