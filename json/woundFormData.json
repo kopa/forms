@@ -1,41 +1,36 @@
-{ 
-    "id":"woundForm",
-    "children": [
-        { 
-            "id": "personalData",
-            "children": [
-                { 
-                    "id": "name",
-                    "data": "max"
-                    
-                },
-                {
-                    "id": "brithdate",
-                    "data": "14.02.2013"
-                },
-                {
-                    "id": "gender",
-                    "data": "m"
+{
+    "woundForm": { 
+        "children": {
+            "personalData": { 
+                "children": {
+                    "name": { 
+                        "data": "max"
+                    },
+                    "birthdate": {
+                        "data": "2013-01-13"
+                    },
+                    "gender": {
+                        "children": {
+                            "male": {"data": "männlich"},
+                            "female": {"data": "weiblich"}
+                        }
+                        
+                    }
                 }
-                
-            ]
-        },
-        {
-            "id": "medicalData",
-            "children": [
-                {
-                    "id": "bloodSugar",
-                    "data":"84"
-                },
-                {
-                    "id": "bloodPressure",
-                    "data": "90"
-                },
-                {
-                    "id": "comment",
-                    "data": "this is a comment"
+            },
+            "medicalData": {
+                "children": {
+                   "bloodSugar": {
+                        "data":"84"
+                    },
+                    "bloodPressure": {
+                        "data": "90"
+                    },
+                    "comment": {
+                        "data": "this is a comment"
+                    }
                 }
-            ]
+            }
         }
-    ]
+    }
 }
